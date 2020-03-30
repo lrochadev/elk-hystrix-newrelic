@@ -1,0 +1,30 @@
+version: '3.2'
+
+services:
+  string-consumer:
+    container_name: string-consumer
+    image: lrochadev/string-consumer
+    build:
+      context: ./string-consumer
+    ports:
+      - 8080:8080
+    environment:
+      - "JAVA_OPTS=-Dnewrelic.config.app_name=v1/string-consumer -Dnewrelic.config.license_key= -Dserver.port=8080"
+    networks:
+      - production-network
+
+  string-producer:
+    container_name: string-producer
+    image: lrochadev/string-producer
+    build:
+      context: ./string-producer
+    ports:
+      - 8081:8081
+    environment:
+      - "JAVA_OPTS=-Dnewrelic.config.app_name=v1/string-producer -Dnewrelic.config.license_key= -Dserver.port=8081"
+    networks:
+      - production-network
+
+networks:
+  production-network:
+    driver: bridge
