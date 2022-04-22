@@ -4,10 +4,13 @@ import com.consumer.service.GreetingService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -19,7 +22,7 @@ public class GreetingController {
     private final GreetingService greetingService;
 
     @GetMapping("/{username}")
-    public String getGreeting(@PathVariable("username") String username) {
-        return greetingService.getGreeting(username);
+    public ResponseEntity<?> getGreeting(@PathVariable("username") String username) {
+        return ResponseEntity.ok(Map.of("message", greetingService.getGreeting(username)));
     }
 }

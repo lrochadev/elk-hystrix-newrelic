@@ -9,7 +9,7 @@ services:
     ports:
       - 8080:8080
     environment:
-      - "JAVA_OPTS=-Dnewrelic.config.app_name=v1/string-consumer -Dnewrelic.config.license_key= -Dserver.port=8080"
+      - "JAVA_OPTS=-Dnewrelic.config.app_name=v1/string-consumer -Dnewrelic.config.license_key= -Dserver.port=8080 -Dspring.profiles.active=prod"
     networks:
       - production-network
 
@@ -21,7 +21,7 @@ services:
     ports:
       - 8081:8081
     environment:
-      - "JAVA_OPTS=-Dnewrelic.config.app_name=v1/string-producer -Dnewrelic.config.license_key= -Dserver.port=8081"
+      - "JAVA_OPTS=-Dnewrelic.config.app_name=v1/string-producer -Dnewrelic.config.license_key= -Dserver.port=8081 -Dspring.profiles.active=prod"
     networks:
       - production-network
 

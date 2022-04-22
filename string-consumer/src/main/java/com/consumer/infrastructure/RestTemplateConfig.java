@@ -1,4 +1,4 @@
-package com.consumer;
+package com.consumer.infrastructure;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @RequiredArgsConstructor
-public class Configurations {
+public class RestTemplateConfig {
 
     @NonNull
     private final Environment environment;
