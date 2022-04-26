@@ -1,6 +1,7 @@
 package com.consumer.service;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -21,16 +22,17 @@ public class GreetingService {
     @NonNull
     private RestTemplate restTemplate;
 
-    @HystrixCommand(fallbackMethod = "defaultGreeting")
+
+    @CircuitBreaker(name = "greeting-service", fallbackMethod = "defaultGreeting")
+    @Retry(name = "greeting-service", fallbackMethod = "defaultGreeting")
     public String getGreeting(String username) {
         logger.info("Request: Fetching user {} in greetings API.", username);
         final String userResponse = restTemplate.getForObject(this.greetingAPI, String.class, username);
         logger.info("Response: from greetings API: {}.", userResponse);
         return userResponse;
-
     }
 
-    private String defaultGreeting(String username) {
-        return "Hello, default user";
+    private String defaultGreeting(Exception exception) {
+        return String.format("Fallback Execution for Circuit Breaker. Error Message: %s", exception.getMessage());
     }
 }
