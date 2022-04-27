@@ -1,6 +1,18 @@
 version: '3.2'
 
 services:
+  eureka-server:
+    container_name: eureka-server
+    image: lrochadev/eureka-server
+    build:
+      context: ./eureka-server
+    ports:
+      - 8761:8761
+    environment:
+      - "JAVA_OPTIONS=-XX:MaxRAMPercentage=80 -Dserver.port=8761 -Dspring.profiles.active=prod"
+    networks:
+      - production-network
+  
   string-consumer:
     container_name: string-consumer
     image: lrochadev/string-consumer
@@ -12,6 +24,8 @@ services:
       - "JAVA_OPTIONS=-XX:MaxRAMPercentage=80 -Dserver.port=8080 -Dspring.profiles.active=prod"
     networks:
       - production-network
+    depends_on:
+      - eureka-server
     deploy:
         resources:
             limits:
@@ -32,6 +46,8 @@ services:
       - "JAVA_OPTIONS=-XX:MaxRAMPercentage=80 -Dserver.port=8081 -Dspring.profiles.active=prod"
     networks:
       - production-network
+    depends_on:
+      - eureka-server
 
 networks:
   production-network:
