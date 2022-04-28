@@ -2,6 +2,15 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <springProperty scope="context" name="spring.application.name" source="spring.application.name"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy/MM/dd HH:mm:ss:SSS} [${spring.application.name}] [%thread] [%-5level] %logger{36} - %msg{nolookups}%n</Pattern>
+            <!--<Pattern>%msg{nolookups}%n</Pattern>-->
+        </encoder>
+    </appender>
+
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
     </root>
