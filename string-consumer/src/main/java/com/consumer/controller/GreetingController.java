@@ -1,6 +1,10 @@
 package com.consumer.controller;
 
 import com.consumer.service.GreetingService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,13 +18,16 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping("/v1/get-greetings")
+@RequestMapping("/get-greetings")
 @RequiredArgsConstructor
+@Tag(name = "Endpoints de consulta do usuário.")
 public class GreetingController {
 
     @NonNull
     private final GreetingService greetingService;
 
+    @Operation(summary = "Busca usuário por nome na API de boas-vindas")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Ok"), @ApiResponse(responseCode = "500", description = "Internal server error")})
     @GetMapping("/{username}")
     public ResponseEntity<?> getGreeting(@PathVariable("username") String username) {
         return ResponseEntity.ok(Map.of("message", greetingService.getGreeting(username)));

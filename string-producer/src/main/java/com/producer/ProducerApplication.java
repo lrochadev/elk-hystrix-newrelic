@@ -1,5 +1,9 @@
 package com.producer;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -12,9 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@RequestMapping("/v1/greetings")
+@RequestMapping("/greetings")
 @RestController
 @EnableEurekaClient
+@Tag(name = "Endpoints de boas-vindas ao usuário.")
 public class ProducerApplication {
 
     private static final Logger logger = LoggerFactory.getLogger(ProducerApplication.class);
@@ -23,6 +28,8 @@ public class ProducerApplication {
         SpringApplication.run(ProducerApplication.class, args);
     }
 
+    @Operation(summary = "Retorna mensagem de boas-vindas ao usuário.")
+    @ApiResponses(value = @ApiResponse(responseCode = "200", description = "Ok"))
     @GetMapping("/{username}")
     public ResponseEntity<String> greeting(@PathVariable("username") String username) {
         final String response = "Hello, " + username;
