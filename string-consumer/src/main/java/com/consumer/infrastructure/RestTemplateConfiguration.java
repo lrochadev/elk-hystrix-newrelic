@@ -16,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @RequiredArgsConstructor
-public class RestTemplateConfig {
+public class RestTemplateConfiguration {
 
     @NonNull
     private final Environment environment;
