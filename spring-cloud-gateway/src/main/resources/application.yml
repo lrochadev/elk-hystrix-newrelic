@@ -1,0 +1,40 @@
+server:
+  port: 8080
+  servlet:
+    context-path: gateway
+
+spring:
+  application:
+    name: gateway
+
+consumer:
+  api:
+    url: http://localhost:8081/
+
+producer:
+  api:
+    url: http://localhost:8082/
+
+#spring:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: consumer-microservice
+#          uri: http://localhost:8081/
+#          predicates:
+#            - Path=/consumer/**
+#        - id: producer-microservice
+#          uri: http://localhost:8082/
+#          filters:
+#            - name: Retry
+#              args:
+#                retries: 3
+#                statuses: BAD_GATEWAY
+#                methods: GET,POST
+#                backoff:
+#                  firstBackoff: 10ms
+#                  maxBackoff: 50ms
+#                  factor: 2
+#                  basedOnPreviousValue: false
+#          predicates:
+#            - Path=/producer/**
