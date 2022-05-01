@@ -1,19 +1,47 @@
 server:
   port: 8080
-  servlet:
-    context-path: gateway
 
 spring:
   application:
     name: gateway
+  main:
+    banner-mode: off
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+          enabled: true
 
-consumer:
-  api:
-    url: http://localhost:8081/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: 'true'
 
-producer:
-  api:
-    url: http://localhost:8082/
+#consumer:
+#  api:
+#    url: http://localhost:8081/
+#
+#producer:
+#  api:
+#    url: http://localhost:8082/
+
+eureka:
+  client:
+    instance:
+      preferIpAddress: 'true'
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761/eureka}
+  instance:
+    status-page-url-path: /actuator/health
+    hostname: localhost
 
 #spring:
 #  cloud:
