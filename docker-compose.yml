@@ -4,6 +4,8 @@ services:
   eureka-server:
     container_name: eureka-server
     image: lrochadev/eureka-server
+    restart: always
+    network_mode: host
     build:
       context: ./eureka-server
     ports:
@@ -11,36 +13,54 @@ services:
     environment:
       - JAVA_OPTIONS=-XX:MaxRAMPercentage=80
       - SPRING_PROFILES_ACTIVE=prod
-    networks:
-      - production-network
   
+  gateway:
+    container_name: gtw
+    image: lrochadev/gateway
+    restart: always
+    network_mode: host
+    build:
+      context: ./spring-cloud-gateway
+    ports:
+      - 8080:8080
+    environment:
+      - JAVA_OPTIONS=-XX:MaxRAMPercentage=80
+      - EUREKA_SERVICE_URL=http://192.168.1.3:8761/eureka
+    depends_on:
+      - eureka-server
+
   string-consumer:
-    container_name: string-consumer
     image: lrochadev/string-consumer
+    restart: always
+    network_mode: host
     build:
       context: ./string-consumer
-    ports:
-      - 8081:8081
+    expose:
+      - 8081
     environment:
       - JAVA_OPTIONS=-XX:MaxRAMPercentage=80
       - SPRING_PROFILES_ACTIVE=prod
-      # - EUREKA_SERVICE_URL=http://192.168.0.111:8761/eureka
-    networks:
-      - production-network
+      - EUREKA_SERVICE_URL=http://192.168.1.3:8761/eureka
     depends_on:
       - eureka-server
     deploy:
-        resources:
-            limits:
-              cpus: '1'
-              memory: 768M
-            reservations:
-              cpus: '0.25'
-              memory: 256M
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '1'
+          memory: 768M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
 
   string-producer:
     container_name: string-producer
     image: lrochadev/string-producer
+    restart: always
+    network_mode: host
     build:
       context: ./string-producer
     ports:
@@ -48,13 +68,6 @@ services:
     environment:
       - JAVA_OPTIONS=-XX:MaxRAMPercentage=80
       - SPRING_PROFILES_ACTIVE=prod
-      # - EUREKA_SERVICE_URL=http://192.168.0.111:8761/eureka
-    networks:
-      - production-network
+      - EUREKA_SERVICE_URL=http://192.168.1.3:8761/eureka
     depends_on:
       - eureka-server
-
-networks:
-  production-network:
-    name: production-network
-    driver: bridge
