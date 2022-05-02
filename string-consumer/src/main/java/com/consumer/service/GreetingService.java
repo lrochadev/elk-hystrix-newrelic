@@ -32,7 +32,7 @@ public class GreetingService {
         return userResponse;
     }
 
-        public String defaultGreeting(Exception exception) {
+    public String defaultGreeting(Exception exception) {    
         logger.error("Fallback Execution for Circuit Breaker. Error Message: {}", exception.getMessage());
         return "Hello, default user";
     }
