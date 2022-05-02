@@ -1,6 +1,7 @@
 package com.consumer.service;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -31,7 +32,7 @@ public class GreetingService {
         return userResponse;
     }
 
-    private String defaultGreeting(Exception exception) {
+        public String defaultGreeting(Exception exception) {
         logger.error("Fallback Execution for Circuit Breaker. Error Message: {}", exception.getMessage());
         return "Hello, default user";
     }
