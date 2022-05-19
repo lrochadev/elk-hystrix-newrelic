@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    discovery:
+      enabled: 'false'
+  zipkin:
+    enabled: 'false'
+  datasource:
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    max-active: 10
+    initial-size: 5
+    max-idle: 5
+    min-idle: 1
+    test-while-idle: true
+    test-on-borrow: true
+    validation-query: SELECT 1
+    url: jdbc:sqlserver://localhost:1401;databaseName=xxx;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: xxx
+  jpa:
+    hibernate.ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+    show-sql: false
+    open-in-view: false
