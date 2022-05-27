@@ -1,0 +1,26 @@
+{
+    "request":{
+        "method": "GET",
+        "urlPathPattern": "/vas/v1/customers/(.*)"
+//        "queryParameters" : {
+//          "operations" : {
+//            "equalTo" : "ADESAO"
+//          }
+//        }
+    },
+    "response" : {
+        "status": 200,
+        "jsonBody": {
+              "coreConsumedData": 250000,
+              "additionalPackage": {
+                "contractedData": 500000,
+                "consumedData": 500000
+              },
+              "internetSpeedIsReduced": true,
+              "speedIsReducedOrNavigationIsBlocked": true,
+              "navigationIsBlocked": true
+        }
+
+    }
+}
+

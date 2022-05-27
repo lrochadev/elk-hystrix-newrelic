@@ -1,0 +1,21 @@
+{
+    "request":{
+        "method": "GET",
+        "urlPathPattern": "/vas/v1/eligibility/(.*)",
+        "queryParameters" : {
+          "operations" : {
+            "equalTo" : "RENOVACAO"
+        }
+      }
+    },
+    "response" : {
+        "status": 200,
+        "jsonBody": [
+			{
+				"eligible": true,
+				"operation": "RENOVACAO"
+			}
+		]
+    }
+}
+    

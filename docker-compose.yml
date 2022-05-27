@@ -54,6 +54,18 @@ services:
     depends_on:
       - eureka-server
 
+  wiremock-local:
+    build: ./string-consumer/wiremock
+    container_name: wiremock-standalone
+    ports:
+      - "5099:5099"
+      - "8765:8765"
+    volumes:
+      - ./string-consumer/wiremock/__files:/opt/wiremock/__files
+      - ./string-consumer/wiremock/mappings:/opt/wiremock/mappings
+    networks:
+      - production-network
+
 networks:
   production-network:
     name: production-network

@@ -1,0 +1,27 @@
+{
+    "request": {
+        "method": "PUT",
+        "urlPathPattern": "/v2/transactions/(.*)/complete"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "id": "ff34cd8b-4df2-4222-8745-c34d2c9d2cf0",
+            "externalId": "3",
+            "recharges": [
+                {
+                    "type": "TIM_BLACK_A|MASTERCARD",
+                    "account": "21999984666",
+                    "value": 20,
+                    "status": "CONFIRMED",
+                    "transacted": "2018-09-17T17:24:18",
+                    "id": "08350743-4694-4e1b-8bc7-08a6595d2033",
+                    "mandatory": true,
+                    "nsu": "504",
+                    "externalId": "81841ee1-670f-4c0c-b5c9-a99622e7fc79"
+                }
+            ],
+            "status": "COMPLETED"
+        }
+    }
+}

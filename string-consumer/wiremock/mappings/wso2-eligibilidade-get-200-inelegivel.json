@@ -1,0 +1,18 @@
+{
+    "request":{
+        "method": "GET",
+        "urlPathPattern": "/vas-wso2/customers/21990012350/mobileIdentity"
+    },
+    "response" : {
+        "status": 200,
+        "jsonBody":{
+            "msisdn" : "5521990012350",
+            "plan" : {
+                "id": "99"
+            },
+            "portabilityStatus" : 1,
+            "customerStatus" : 1,
+            "areaCode" : 21
+        }
+    }
+}

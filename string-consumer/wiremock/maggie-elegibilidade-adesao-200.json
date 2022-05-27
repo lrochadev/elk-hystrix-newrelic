@@ -1,0 +1,17 @@
+{
+    "request":{
+        "method": "GET",
+        "urlPathPattern": "/vas/v1/eligibility/5521999999999?operations=ADESAO&channel=MUNDO+TIM&plan=TIM_CONTROLE_1000"
+    },
+    "response" : {
+        "status": 200,
+        "jsonBody": [
+			{
+				"eligible": true,
+				"operation": "ADESAO",
+				"reason": "FANFON LEVADO"
+			}
+		]
+    }
+}
+

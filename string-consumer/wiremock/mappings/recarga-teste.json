@@ -1,0 +1,10 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPathPattern": "test/v1/recarga(.*)"
+    },
+    "response": {
+        "status": 200,
+        "body": ""
+    }
+}

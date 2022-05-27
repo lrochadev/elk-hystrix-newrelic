@@ -1,0 +1,16 @@
+{
+    "priority": 1,
+    "request": {
+        "method": "POST",
+        "urlPathPattern": "/v2/transactions",
+        "bodyPatterns": [  { "contains": "\"account\" : \"21977479361\"" },
+                           { "contains": "\"type\" : \"PLUGIN_TIM_MUSIC_RECORRENTE|MASTERCARD\""} ]
+    },
+    "response": {
+        "status": 422,
+        "jsonBody": {
+            "code": "RECHARGE_ERROR",
+            "message": "Recarga não autorizada"
+        }
+    }
+}

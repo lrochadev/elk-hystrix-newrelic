@@ -1,0 +1,22 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPathPattern": "/vas-wso2/customers/(12\\d{9})/mobileIdentity"
+    },
+    "response": {
+        "status": 401,
+        "jsonBody": {
+            "timestamp": 1520344101000,
+            "status": 401,
+            "error" : "Erro",
+            "exception": "Exception",
+            "errors":[
+                "Error1",
+                "Error2"
+            ],
+            "message":"Mensagem Error",
+            "path": "/customers/msisdn/mobileIdentity",
+            "internalCode":"Internal Code"
+        }
+    }
+}

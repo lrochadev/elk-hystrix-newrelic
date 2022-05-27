@@ -1,0 +1,10 @@
+{
+    "request":{
+        "method": "PUT",
+        "urlPathPattern": "/vas/v1/tariff-plans/(.*)"
+    },
+    "response" : {
+        "status": 200
+    }
+}
+    

@@ -1,0 +1,11 @@
+{
+
+  "request": {
+    "method": "GET",
+    "urlPattern": "/eldorado/v1/service/(.*)/cc/(.*).token"
+  },
+  "response": {
+    "proxyBaseUrl" : "http://10.22.36.18:9090"
+  }
+}
+

@@ -1,0 +1,14 @@
+{
+    "request":{
+        "method": "GET",
+        "urlPathPattern": "/vas/v1/eligibility/5521999999998(.*)"
+    },
+    "response" : {
+        "status": 400,
+        "jsonBody": {
+				"code": "BLA_BLA_BLA",
+				"message": "Parametros invalidos"
+		}
+    }
+}
+    

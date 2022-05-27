@@ -1,0 +1,10 @@
+{
+    "request": {
+        "method": "PUT",
+        "urlPathPattern": "/vas/v1/cadauto(.*)"
+    },
+    "response": {
+        "status": 200,
+        "body": ""
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "request":{
+        "method": "PUT",
+        "urlPathPattern": "/eldorado/v1/service/99999/transaction/(.*)/authorize"
+    },
+    "response" : {
+        "status": 200,
+        "jsonBody":
+        {
+          "result": {
+            "resultCode": "090",
+            "resultDetailing": "0",
+            "resultSuccess": false,
+            "resultHint": "30",
+            "resultMessage": "Sucesso",
+            "creditLimit": null
+          },
+          "authorizationNumber": "71746402",
+          "nsu": "M[getNSU -313201278]",
+          "card": null
+        }
+    }
+}
+
