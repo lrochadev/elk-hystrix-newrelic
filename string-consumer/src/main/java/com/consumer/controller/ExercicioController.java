@@ -29,28 +29,28 @@ public class ExercicioController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Ok"), @ApiResponse(responseCode = "500", description = "Internal server error")})
     @GetMapping
     public ResponseEntity<List<Exercicios>> getExercicios() {
-        return ResponseEntity.ok(exercicioService.findExercicios());
+        return ResponseEntity.ok(exercicioService.findAll());
     }
 
     @Operation(summary = "Busca exercício por código.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Ok"), @ApiResponse(responseCode = "500", description = "Internal server error")})
     @GetMapping("/{codigo}")
     public ResponseEntity<?> getExercicioByCodigo(@PathVariable("codigo") String codigo) {
-        return ResponseEntity.ok(exercicioService.findExercicioByCodigo(codigo));
+        return ResponseEntity.ok(exercicioService.findByCodigo(codigo));
     }
 
     @Operation(summary = "Persiste o exercício.")
     @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "Created"), @ApiResponse(responseCode = "500", description = "Internal server error")})
     @PostMapping
-    public ResponseEntity<Exercicios> persistExercicio(@RequestBody Exercicios exercicio) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(exercicioService.saveExercicio(exercicio));
+    public ResponseEntity<Exercicios> save(@RequestBody Exercicios exercicio) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(exercicioService.save(exercicio));
     }
 
     @Operation(summary = "Remove o exercício.")
     @ApiResponses(value = {@ApiResponse(responseCode = "204", description = "No Content"), @ApiResponse(responseCode = "500", description = "Internal server error")})
     @DeleteMapping("/{codigo}")
-    public ResponseEntity<Void> deleteExercicio(@PathVariable("codigo") String codigo) {
-        exercicioService.deleteExercicio(codigo);
+    public ResponseEntity<Void> delete(@PathVariable("codigo") String codigo) {
+        exercicioService.delete(codigo);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

@@ -16,21 +16,22 @@ public class ExercicioService {
 
     private final ExercicioRepository exercicioRepository;
 
-    public List<Exercicios> findExercicios() {
+    public List<Exercicios> findAll() {
         return exercicioRepository.findAll();
     }
 
-    public Exercicios findExercicioByCodigo(final String codigo) {
+    public Exercicios findByCodigo(final String codigo) {
         return Optional.ofNullable(exercicioRepository.findByCodigo(codigo)).orElseThrow(ExercicioNotFoundException::new);
     }
 
-    public Exercicios saveExercicio(final Exercicios exercicio) {
+    @Transactional
+    public Exercicios save(final Exercicios exercicio) {
         return exercicioRepository.save(exercicio);
     }
 
     @Transactional
-    public void deleteExercicio(final String codigo) {
-        this.findExercicioByCodigo(codigo);
+    public void delete(final String codigo) {
+        this.findByCodigo(codigo);
         exercicioRepository.deleteByCodigo(codigo);
     }
 }
