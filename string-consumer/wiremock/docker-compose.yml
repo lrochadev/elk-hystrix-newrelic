@@ -1,0 +1,19 @@
+version: '3.2'
+
+services:
+  wiremock:
+    build: .
+    container_name: wiremock-standalone
+    ports:
+      - "5099:5099"
+      - "8765:8765"
+    volumes:
+      - ./__files:/opt/wiremock/__files
+      - ./mappings:/opt/wiremock/mappings
+    networks:
+      - production-network
+
+networks:
+  production-network:
+    name: production-network
+    driver: bridge
